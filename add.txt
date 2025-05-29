@@ -1,1 +1,3 @@
-hola
+Para lanzar la app en local usar 
+
+npm run dev
