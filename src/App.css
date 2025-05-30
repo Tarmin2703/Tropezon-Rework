@@ -85,13 +85,16 @@ main h1 {
   display: flex;
   flex-direction: column;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: all 0.3s ease;
 }
 
 .news-item:hover {
   transform: translateY(-8px);
   box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15), -6px -6px 20px rgba(255, 255, 255, 0.8);
 }
-
+.news-item:has(.max-h-40) {
+  min-height: 280px;
+}
 .news-item img {
   width: 100%;
   height: 200px;
@@ -110,6 +113,7 @@ main h1 {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding-bottom: 1 rem;
 }
 
 .news-content h2 {
@@ -195,4 +199,74 @@ main h1 {
   .read-more {
     padding: 0.5rem 1rem;
   }
+}
+
+.speech-reader-container {
+  display: flex;
+  justify-content: center; /* ✅ Centra horizontalmente */
+  align-items: center; /* ✅ Centra verticalmente */
+  margin-top: 12px;
+  margin: auto;
+  border-radius: 50px;
+  background-color: transparent; /* 🔽 Fondo completamente transparente */
+  transition: all 0.3s ease;
+  width: fit-content;
+  padding: 0; /* 🔽 Elimina cualquier espacio extra */
+  border: none; /* 🔥 Removemos completamente el borde */
+}
+
+/* Si necesitas más ajustes */
+.speech-reader-container:hover {
+  background-color: rgba(125, 125, 125, 0.2);
+}
+
+/* 🎨 Estilo del menú desplegable */
+.speech-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  gap: 8px; /* Reduce el espacio entre botones */
+  background: white;
+  padding: 8px; /* 🔽 Reduce el espacio interno */
+  border-radius: 12px; /* Mantiene bordes redondeados */
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); /* Ligera sombra */
+  border: 1px solid rgba(125, 125, 125, 0.2); /* Borde más delgado */
+  width: 140px; /* 🔽 Reduce el ancho del menú */
+}
+
+/* ✨ Ajuste en los botones */
+.speech-btn {
+  padding: 6px 10px; /* 🔽 Botones más compactos */
+  width: 100%;
+  border-radius: 8px; /* Bordes más suaves */
+  font-size: 13px; /* Ajuste de tamaño de fuente */
+}
+
+/* ✅ Efecto hover igual al de "Leer más" */
+.speech-btn:hover {
+  background: rgb(128, 0, 32);
+  box-shadow: 0 8px 18px rgb(128, 0, 32);
+  color: white;
+}
+
+/* 🔊 Estilo del botón principal */
+.speech-toggle-btn {
+  display: flex;
+  padding: 10px 14px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: rgba(125, 125, 125, 0.2);
+  color: #7d7d7d;
+  transition: all 0.3s ease;
+  border: none;
+  margin: auto;/* Centra el botón */
+}
+
+/* ✨ Efecto hover */
+.speech-toggle-btn:hover {
+  background-color: rgb(128, 0, 32);
+  color: white;
+  box-shadow: 0px 6px 12px rgb(128, 0, 32);
 }

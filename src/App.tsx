@@ -1,4 +1,6 @@
 import './App.css'
+import SpeechReader from "./component/SpeechReader";
+
 
 function Header() {
   return (
@@ -43,7 +45,6 @@ const newsData = [
     url: "#"
   }
 ]
-
 function NewsList() {
   return (
     <section className="news-list container">
@@ -54,11 +55,16 @@ function NewsList() {
             <h2>{title}</h2>
             <p>{description}</p>
             <a href={url} className="read-more">Leer más</a>
+
+            {/* ✅ Nueva clase para estilizar desde CSS */}
+            <div className="speech-reader-container">
+              <SpeechReader text={`${title}. ${description}`} />
+            </div>
           </div>
         </article>
       ))}
     </section>
-  )
+  );
 }
 
 function Footer() {
@@ -108,5 +114,6 @@ function App() {
     </>
   )
 }
+
 
 export default App
