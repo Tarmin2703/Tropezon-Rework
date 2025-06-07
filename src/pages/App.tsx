@@ -1,11 +1,11 @@
-import React, { useState} from 'react'; // Importa useMemo
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import Productos from './pages/productos';
-import Señalenvivo from './pages/Señalenvivo'
-import logooo from './assets/lgooooo.png';
-import bannerImage from './assets/banner.png';
-import ReadNews from './components/ReadNews';
+import Productos from '../pages/productos';
+import Señalenvivo from '../pages/Señalenvivo';
+import logooo from '../assets/lgooooo.png';
+import bannerImage from '../assets/banner.png';
+import ReadNews from '../components/ReadNews';
 
 
 const newsData = [
@@ -42,7 +42,7 @@ function NewsList() {
             <h2>{title}</h2>
             <p>{description}</p>
             <a href={url} className="read-more">Leer más</a>
-            <ReadNews title={title} text={description} /> {/* Ahora lee título + resumen */}
+            <ReadNews title={title} text={description} id={0} /> {/* Ahora lee título + resumen */}
           </div>
         </article>
       ))}
@@ -153,18 +153,23 @@ function Inicio() {
 }
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark' : '';
+  }, [darkMode]);
 
   return (
     <>
-      <header className="header" >
+      <header className="header">
         <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div className="logo" style={{ flex: "0 0 auto" }}>
             <img src={logooo} alt="Logo Tropezon" style={{ height: "100px" }} />
           </div>
 
-          {/* Botón de menú hamburguesa */}
           <button
             onClick={toggleMenu}
             className="menu-toggle"
@@ -184,7 +189,11 @@ function App() {
               <li><Link to="/">Inicio</Link></li>
               <li><Link to="/productos">Quien Somos</Link></li>
               <li><Link to="/Señalenvivo">Señal en Vivo</Link></li>
-              
+              <li>
+                <button onClick={toggleDarkMode} style={{ padding: '0.5rem 1rem', marginTop: '0.5rem', cursor: 'pointer' }}>
+                  Cambiar a tema {darkMode ? 'claro' : 'oscuro'}
+                </button>
+              </li>
             </ul>
           </nav>
         </div>
@@ -200,5 +209,4 @@ function App() {
     </>
   );
 }
-
 export default App;
