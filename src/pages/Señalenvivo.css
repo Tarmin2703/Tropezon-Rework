@@ -1,0 +1,229 @@
+/* Variables de Colores (ESENCIALES para el diseño de navegación) */
+:root {
+  --primary-color: #007bff; /* Un azul de ejemplo, puedes ajustar este color */
+  --secondary-color: #6c757d; /* Un gris para texto secundario */
+  --text-color: #333;
+  --light-gray: #f8f9fa;
+  --white: #ffffff;
+  --border-color: #e9ecef;
+
+  /* Colores originales de señalenvivo.css para el contenido específico */
+  --original-background: #FAF7F0;
+  --original-text-dark: #1f2937;
+  --original-link-color: rgba(125, 125, 125);
+  --original-link-hover: rgb(128, 0, 32);
+  --original-border-color: #7d7d7d;
+  --original-button-bg: rgba(125, 125, 125);
+  --original-button-shadow: rgba(8, 0, 32, 0.3);
+  --original-button-hover: rgb(128, 0, 32);
+}
+
+/* Reset básico para asegurar consistencia */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Base para rem */
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; /* Fuente del app.css, más moderna */
+  line-height: 1.6;
+  color: var(--text-color); /* Usa el color de texto del app.css para la coherencia general */
+  background-color: var(--original-background); /* Mantiene tu fondo original */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Contenedor General (Fusionado de ambos) --- */
+.container {
+  max-width: 1120px; /* Ancho del app.css, generalmente más optimizado */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Relleno lateral para respiro */
+}
+
+/* --- Header de Navegación (Estilo del app.css) --- */
+.header {
+  background-color: var(--white); /* Fondo del app.css */
+  padding: 1rem 0; /* Espaciado del app.css */
+  border-bottom: 1px solid var(--border-color); /* Línea sutil del app.css */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra muy ligera del app.css */
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem; /* Ajuste para el container dentro del header */
+}
+
+.logo {
+  /* Puedes ajustar el tamaño o usar una imagen si tienes un logo */
+  font-size: 1.8rem; /* Un tamaño más adaptable que el 3rem original */
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  color: var(--text-color); /* Usa el color de texto para el logo */
+}
+
+.logo img {
+  height: 60px; /* Tamaño del app.css para img */
+  width: auto;
+}
+
+/* Navegación (Estilo del app.css) */
+.menu-toggle {
+  display: none; /* Ocultar por defecto en escritorio */
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0.5rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu-toggle:hover {
+  color: var(--primary-color);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex; /* Display flex por defecto para escritorio */
+  gap: 2rem; /* Espacio entre los enlaces */
+  padding: 0; /* Asegura que no haya padding */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--text-color); /* Color de texto general */
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links li a::after { /* Animación de subrayado sutil */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+/* --- Main Title (Estilo original de señalenvivo.css) --- */
+main h1 {
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+  color: var(--original-text-dark); /* Asegura que mantenga el color original */
+}
+
+/* --- News Grid Responsive (Estilo original de señalenvivo.css) --- */
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* --- News Card (Estilo original de señalenvivo.css) --- */
+.news-item {
+  background: linear-gradient(145deg, #f9f9f9, #e0e6f2);
+  border-radius: 20px;
+  box-shadow: 4px 4px 15px var(--original-link-color), -4px -4px 15px rgba(255, 255, 255, 0.295);
+  border: 1px solid var(--original-border-color); /* borde */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.15), -6px -6px 20px rgba(255, 255, 255, 0.8);
+}
+
+.news-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: filter 0.3s ease;
+}
+
+.news-item:hover img {
+  filter: brightness(1.05);
+}
+
+.news-content {
+  padding: 1.6rem 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.news-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+.news-content p {
+  font-size: 1rem;
+  color: #555e75;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* --- Botón "Leer más" (Estilo original de señalenvivo.css) --- */
+.read-more {
+  align-self: center;
+  padding: 0.6rem 1.2rem;
+  background: var(--original-button-bg); /* botón */
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 12px var(--original-button-shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.read-more:hover {
+  background: var(--original-button-hover);
+  box-shadow: 0 8px 18px var(--original-button-hover);
+}
+
+/* --- Footer (Estilo original de señalenvivo.css) --- */
+.footer {
+  background-color: #333333; /* navbar color para coherencia */
+  color: #ffffff;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 3rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.footer .container {
+  max-width: 1280px; /* Mantiene el ancho original para el footer si es diferente */
+  margin: 0 auto;
+}

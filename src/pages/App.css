@@ -1,0 +1,457 @@
+/* Variables de Colores (Ajusta según tus colores de marca) */
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --primary-color: #007bff; /* Un azul de ejemplo, reemplaza con tu color principal */
+  --secondary-color: #6c757d; /* Un gris para texto secundario */
+  --text-color: #333;
+  --light-gray: #f8f9fa;
+  --white: #ffffff;
+  --border-color: #e9ecef;
+}
+
+/* Reset básico para asegurar consistencia */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Base para rem */
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; /* Sugerencia: Fuente moderna y legible */
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1120px; /* Ancho optimizado para la mayoría de pantallas */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Relleno lateral para respiro */
+}
+
+/* --- Header Minimalista --- */
+.header {
+  background-color: var(--white);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color); /* Línea sutil */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra muy ligera */
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem; /* Ajuste para el container dentro del header */
+}
+
+.logo img {
+  height: 60px; /* Tamaño más compacto para el logo */
+  width: auto;
+}
+
+/* Navegación */
+.menu-toggle {
+  display: none; /* Ocultar por defecto en escritorio */
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 0.5rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu-toggle:hover {
+  color: var(--primary-color);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* Espacio entre los enlaces */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links li a::after { /* Animación de subrayado sutil */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+.nav-links li a:hover {
+  color: var(--primary-color);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Mostrar hamburguesa en móvil */
+  }
+
+  .nav-closed {
+    display: none;
+  }
+
+  .nav-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding-bottom: 1rem;
+  }
+
+  .nav-open .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .nav-open .nav-links li a {
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* --- Sección Hero (Banner) --- */
+.hero {
+  height: 300px; /* Altura más controlada */
+  background: url('./assets/banner.png') center center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem; /* Espacio debajo del banner */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  overflow: hidden; /* Asegura que la imagen se vea bien */
+}
+
+/* --- Listas de Noticias y Anuncios (Diseño de Tarjetas Minimalista) --- */
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo con auto-fit */
+  gap: 2rem; /* Espacio entre tarjetas */
+  padding-bottom: 3rem;
+}
+
+.news-item {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.news-item:hover {
+  transform: translateY(-5px); /* Efecto hover sutil */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+
+.news-item img {
+  width: 100%;
+  height: 200px; /* Altura fija para las imágenes de las noticias */
+  object-fit: cover; /* Recorta la imagen para que cubra el espacio */
+  display: block;
+}
+
+.news-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Permite que el contenido crezca */
+}
+
+.news-content h2 {
+  font-size: 1.25rem; /* Tamaño de título de tarjeta */
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.news-content p {
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.read-more {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
+}
+
+.read-more:hover {
+  color: darken(var(--primary-color), 10%); /* Oscurece el color en hover */
+}
+
+/* Contenedor de Anuncios con Like/Dislike */
+.like-dislike-container {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto; /* Empuja los botones al final de la tarjeta */
+}
+
+.btns-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+}
+
+.btn-like, .btn-dislike {
+  background-color: var(--light-gray);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.btn-like:hover {
+  background-color: #e6ffe6; /* Verde claro */
+  border-color: #aaffaa;
+}
+
+.btn-dislike:hover {
+  background-color: #ffe6e6; /* Rojo claro */
+  border-color: #ffaaaa;
+}
+
+/* --- Títulos de Sección --- */
+h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+  text-align: center;
+  margin: 3rem 0 2rem; /* Espaciado generoso */
+  position: relative;
+  display: inline-block; /* Para centrar con margen auto */
+  width: 100%; /* Ocupa el ancho para centrar fácilmente */
+}
+
+h2::after { /* Subrayado sutil para títulos */
+  content: '';
+  display: block;
+  width: 60px; /* Ancho del subrayado */
+  height: 3px;
+  background-color: var(--primary-color);
+  margin: 0.75rem auto 0; /* Centra el subrayado */
+  border-radius: 2px;
+}
+
+/* --- Footer Minimalista --- */
+.footer {
+  background-color:#0c152e; /* Un fondo oscuro para el footer */
+  color: var(--light-gray);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 4rem; /* Espacio superior */
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* Ocultar el botón hamburguesa en escritorio si no hay menú abierto */
+.nav-closed {
+  display: flex; /* Mostrar en escritorio */
+}
+
+@media (max-width: 768px) {
+  .nav-closed {
+    display: none; /* Ocultar en móvil si no está abierto */
+  }
+}
+
+.read-news-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Espacio entre los botones */
+  margin-top: 1rem; /* Espaciado superior */
+}
+
+.read-news-buttons button {
+  padding: 0.5rem 1rem;
+  background-color: var(--light-gray);
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Efecto hover */
+.read-news-buttons button:hover {
+  background-color: var(--primary-color);
+  border-color: var(--border-color);
+  color: var(--white);
+}
+/*animacion botones de lectura*/
+@keyframes border-pulse {
+  0% { border-color: #007bff; box-shadow: 0 0 10px #007bff; }
+  50% { border-color: #ffffff; box-shadow: 0 0 10px #ffffff; }
+  100% { border-color: #007bff; box-shadow: 0 0 10px #007bff; }
+}
+
+/* Aplicar animación SOLO al botón activo */
+.read-news-buttons .play.active,
+.read-news-buttons .pause.active {
+  animation: border-pulse 1.5s infinite ease-in-out;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #000000;
+}
+
+body.dark a {
+  color: #ffffff;
+}
+/* Agrega más reglas según necesites adaptar el diseño */
+
+
+
+.news-list {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.news-item {
+  background-color: #6b6d72; /* Fondo oscuro */
+  color: white;              /* Texto blanco */
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.news-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* Estilo para los títulos */
+.news-content h2 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.2;
+  white-space: normal; /* Permite saltos de línea */
+  overflow: visible;   /* No oculta contenido */
+  text-overflow: unset; /* No aplica puntos suspensivos */
+}
+/* Estilo para las descripciones */
+.news-content p {
+  color: white;
+  font-size: 1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;       /* Muestra hasta 3 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Contenedor de botones */
+.like-dislike-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+/* Botones */
+.btns-wrapper button {
+  background-color: #333;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btns-wrapper button:hover {
+  background-color: #555;
+}
+
+h2 {
+  color: #474545;
+}
+
+/* Estilo de los enlaces en la navbar */
+.nav-links li a, .nav-links li .theme-toggle {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer; /* Hace que parezca un enlace */
+}
+
+.nav-links li a::after,
+.nav-links li .theme-toggle::after { /* Animación de subrayado */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links li a:hover::after,
+.nav-links li .theme-toggle:hover::after {
+  width: 100%;
+}
+
+.nav-links li a:hover,
+.nav-links li .theme-toggle:hover {
+  color: var(--primary-color);
+}
